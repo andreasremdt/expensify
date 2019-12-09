@@ -1,0 +1,11 @@
+{
+  "name": "expensify",
+  "version": "1.0.0",
+  "description": "simple dashboard to manage your expenses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andreas Remdt",
+  "license": "MIT"
+}
