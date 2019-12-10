@@ -1,49 +1,17 @@
 var http = require("http");
+var handler = require("./handler");
 
 module.exports = function() {
   var routes = new Map();
+  var server = http.createServer(handler(routes));
 
-  var server = http.createServer(function(request, response) {
-    var responseObject = {
-      _status: 200,
+  server.on("error", function(error) {
+    if (error.code == "EADDRINUSE") {
+      console.error(
+        `\x1b[31mSome other process is blocking port ${error.port}. Please specify a different port or exit the running process first.\x1b[89m`
+      );
 
-      status(status) {
-        this._status = status;
-
-        return this;
-      },
-
-      send(json) {
-        response.writeHead(this._status, {
-          "Content-Type": "application/json"
-        });
-        response.end(JSON.stringify(json));
-      }
-    };
-
-    for (let [route, handler] of routes) {
-      let [method, url] = route.split("@");
-
-      if (request.method == method) {
-        if (request.url == url) {
-          handler(responseObject, request);
-
-          break;
-        }
-
-        if (url.includes("/:id")) {
-          if (request.url.includes(url.replace("/:id", ""))) {
-            let parts = request.url.split("/");
-
-            handler(
-              responseObject,
-              Object.assign(request, { id: parts[parts.length - 1] })
-            );
-
-            break;
-          }
-        }
-      }
+      server.close();
     }
   });
 
@@ -73,9 +41,9 @@ module.exports = function() {
     },
 
     start(port = 3000) {
-      server.listen(port);
-
-      console.log(`Server is listening on port ${port}.`);
+      server.listen(port, function() {
+        console.log(`Server is listening on port ${port}.`);
+      });
     }
   };
 };
