@@ -1,38 +1,24 @@
 var responder = require("./response");
+var matchRoute = require("./match-route");
 
 module.exports = function handler(routes) {
   return function(request, response) {
-    var served = false;
     var respond = responder(response);
+    var data = [];
 
-    for (let [route, handler] of routes) {
-      let [method, url] = route.split("@");
+    request.on("data", (chunk) => data.push(chunk));
 
-      if (request.method == method) {
-        if (request.url == url) {
-          handler(respond, request);
-          served = true;
+    request.on("end", () => {
+      var match = matchRoute(request, routes);
 
-          break;
-        }
-
-        let index = url.search(/\:\w/i);
-        if (index != -1) {
-          let regex = new RegExp(`${url.slice(0, index)}(.*)`, "i");
-          let found = regex.exec(request.url);
-
-          if (found) {
-            handler(respond, Object.assign(request, { param: found[1] }));
-            served = true;
-
-            break;
-          }
-        }
+      if (!match) {
+        respond.status(404).send("Not found");
+      } else {
+        match.handler(respond, {
+          id: match.params,
+          body: data.length ? JSON.parse(data) : {}
+        });
       }
-    }
-
-    if (!served) {
-      respond.status(404).send("Not found");
-    }
+    });
   };
 };
