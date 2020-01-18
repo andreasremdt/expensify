@@ -24,7 +24,6 @@ h1, h2, h3 {
 table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--border-color);
 }
 
 td {
@@ -37,4 +36,8 @@ tr:nth-child(odd) {
 
 svg, img {
   vertical-align: middle;
+}
+
+.wrapper {
+  padding: 0 calc((100vw - 1024px) / 2);
 }

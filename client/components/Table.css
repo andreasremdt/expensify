@@ -1,18 +1,14 @@
-.expenses-table {
-  padding: 0 calc((100vw - 1024px) / 2);
-}
-
-.expenses-table .actions {
+.actions {
   text-align: right;
   opacity: 0.1;
   transition: opacity .1s linear;
 }
 
-.expenses-table tr:hover .actions {
+tr:hover .actions {
   opacity: 1;
 }
 
-.expenses-table .action {
+.action {
   background-color: transparent;
   padding: unset;
   border: none;
@@ -27,7 +23,7 @@
   transition: background-color .1s linear;
 }
 
-.expenses-table .action:hover,
-.expenses-table .action:focus {
+.action:hover,
+.action:focus {
   background-color: rgba(0, 0, 0, .1);
 }

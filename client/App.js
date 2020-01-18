@@ -1,11 +1,13 @@
 import React from "react";
 import Header from "./components/Header";
 import Table from "./components/Table";
+import Form from "./components/Form";
 import expenses from "./expenses";
 
 class App extends React.PureComponent {
   state = {
-    expenses: []
+    expenses: [],
+    isFormDisplayed: false
   };
   
   componentDidMount() {
@@ -20,11 +22,27 @@ class App extends React.PureComponent {
     });
   };
 
+  handleCreate = (expense) => {
+    this.setState({
+      expenses: [...this.state.expenses, expense]
+    });
+  };
+
+  handleToggleForm = () => {
+    this.setState({
+      isFormDisplayed: !this.state.isFormDisplayed
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <Header />
-        <Table expenses={this.state.expenses} handleDelete={this.handleDelete} />
+        <Header handleToggleForm={this.handleToggleForm} />
+
+        <div className="wrapper">
+          {this.state.isFormDisplayed && <Form handleToggleForm={this.handleToggleForm} handleCreate={this.handleCreate} />}
+          <Table expenses={this.state.expenses} handleDelete={this.handleDelete} />
+        </div>
       </React.Fragment>
     );
   }

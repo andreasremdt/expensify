@@ -26,7 +26,6 @@ class ExpensesForm extends React.PureComponent {
     var amount = formatCurrency(evt.target.value);
     
     if (amount) {
-      console.log(amount);
       this.setState({ amount });
     }
   };
@@ -34,7 +33,7 @@ class ExpensesForm extends React.PureComponent {
   handleSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log(this.state);
+    this.props.handleCreate(this.state);
   };
 
   render() {
@@ -65,7 +64,7 @@ class ExpensesForm extends React.PureComponent {
         </div>
 
         <div className="group">
-          <Button type="submit" variant="secondary">
+          <Button onClick={this.props.handleToggleForm} variant="secondary">
             <Icon type="cancel" /> Cancel
           </Button>
         </div>
