@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import Icon from "./Icon";
 import "./Header.css";
 
 function Header() {
@@ -7,7 +8,9 @@ function Header() {
     <header className="page-header">
       <h1 className="">Expensify</h1>
 
-      <Button>Create</Button>
+      <Button>
+        <Icon type="create" /> Create
+      </Button>
     </header>
   );
 }
