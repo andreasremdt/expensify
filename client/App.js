@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
 import Table from "./components/Table";
-import ExpensesForm from "./components/ExpensesForm";
 import expenses from "./expenses";
 
 class App extends React.PureComponent {
@@ -13,12 +12,19 @@ class App extends React.PureComponent {
     this.setState({ expenses });
   }
 
+  handleDelete = (evt) => {
+    var { id } = evt.currentTarget.closest("tr").dataset;
+
+    this.setState({
+      expenses: this.state.expenses.filter(expense => expense.id != Number(id))
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
         <Header />
-        {/* <ExpensesForm /> */}
-        <Table expenses={this.state.expenses} />
+        <Table expenses={this.state.expenses} handleDelete={this.handleDelete} />
       </React.Fragment>
     );
   }

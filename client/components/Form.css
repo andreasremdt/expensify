@@ -1,0 +1,17 @@
+.expenses-form {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.expenses-form > .group {
+  margin-right: 10px;
+}
+
+.expenses-form > .amount {
+  flex-basis: 100px;
+}
+
+.expenses-form > .description {
+  flex: 1;
+}

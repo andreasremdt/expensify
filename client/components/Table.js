@@ -1,15 +1,17 @@
 import React from "react";
 import Icon from "./Icon";
+import Form from "./Form";
 import { formatDate, formatCurrency } from "../utils/format-helpers";
 import "./Table.css";
 
-function Table({ expenses }) {
+function Table({ expenses, handleDelete }) {
   return (
     <div className="expenses-table">
+      <Form />
       <table>
         <tbody>
           {expenses.map(expense => (
-            <tr key={expense.id}>
+            <tr key={expense.id} data-id={expense.id}>
               <td>
                 <input type="checkbox" />
               </td>
@@ -21,7 +23,7 @@ function Table({ expenses }) {
                 <button type="button" className="action">
                   <Icon type="edit" />
                 </button>
-                <button type="button" className="action">
+                <button type="button" className="action" onClick={handleDelete}>
                   <Icon type="delete" />
                 </button>
               </td>
