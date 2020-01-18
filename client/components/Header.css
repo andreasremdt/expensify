@@ -1,0 +1,8 @@
+.page-header {
+  border-top: 3px solid var(--accent-color);
+  padding: 0 calc((100vw - 1024px) / 2);
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+}
