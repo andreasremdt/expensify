@@ -2,6 +2,7 @@
   --accent-color: hsl(160, 51%, 49%);
   --text-color: hsl(209, 34%, 30%);
   --heading-color: hsl(209, 61%, 16%);
+  --border-color: hsl(212, 33%, 89%);
 }
 
 * {
@@ -18,4 +19,22 @@ h1, h2, h3 {
   font-weight: lighter;
   color: var(--heading-color);
   margin: unset;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+}
+
+td {
+  padding: 15px 10px;
+}
+
+tr:nth-child(odd) {
+  background-color: hsl(210, 36%, 96%);
+}
+
+svg, img {
+  vertical-align: middle;
 }

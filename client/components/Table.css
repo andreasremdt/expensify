@@ -1,0 +1,33 @@
+.expenses-table {
+  padding: 0 calc((100vw - 1024px) / 2);
+}
+
+.expenses-table .actions {
+  text-align: right;
+  opacity: 0.1;
+  transition: opacity .1s linear;
+}
+
+.expenses-table tr:hover .actions {
+  opacity: 1;
+}
+
+.expenses-table .action {
+  background-color: transparent;
+  padding: unset;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .1s linear;
+}
+
+.expenses-table .action:hover,
+.expenses-table .action:focus {
+  background-color: rgba(0, 0, 0, .1);
+}

@@ -1,16 +1,27 @@
 import React from "react";
 import Header from "./components/Header";
-import ExpensesTable from "./components/ExpensesTable";
+import Table from "./components/Table";
 import ExpensesForm from "./components/ExpensesForm";
+import expenses from "./expenses";
 
-function App() {
-  return (
-    <React.Fragment>
-      <Header />
-      <ExpensesForm />
-      <ExpensesTable />
-    </React.Fragment>
-  );
+class App extends React.PureComponent {
+  state = {
+    expenses: []
+  };
+  
+  componentDidMount() {
+    this.setState({ expenses });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Header />
+        {/* <ExpensesForm /> */}
+        <Table expenses={this.state.expenses} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
