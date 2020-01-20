@@ -1,5 +1,6 @@
 :root {
   --accent-color: hsl(160, 51%, 49%);
+  --error-color: hsl(360, 71%, 66%);
   --text-color: hsl(209, 34%, 30%);
   --heading-color: hsl(209, 61%, 16%);
   --border-color: hsl(212, 33%, 89%);
@@ -11,11 +12,14 @@
 
 body {
   margin: unset;
-  font: normal 16px/1.5 "Source Sans Pro", system-ui, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  font: normal 16px/1.5 "Source Sans Pro", system-ui, BlinkMacSystemFont,
+    Segoe UI, Helvetica, Arial, sans-serif;
   color: var(--text-color);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: lighter;
   color: var(--heading-color);
   margin: unset;
@@ -34,7 +38,8 @@ tr:nth-child(odd) {
   background-color: hsl(210, 36%, 96%);
 }
 
-svg, img {
+svg,
+img {
   vertical-align: middle;
 }
 

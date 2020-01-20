@@ -6,6 +6,7 @@
 
 .expenses-form > .group {
   margin-right: 10px;
+  position: relative;
 }
 
 .expenses-form > .amount {
