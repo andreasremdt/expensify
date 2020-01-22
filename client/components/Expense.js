@@ -1,10 +1,13 @@
 import React from "react";
 import Icon from "./Icon";
 import Form from "./Form";
+import ExpenseContext from "../contexts/ExpenseContext";
 import { formatDate, formatCurrency } from "../utils/format-helpers";
 
 class Expense extends React.PureComponent {
   state = { isEditing: false };
+
+  static contextType = ExpenseContext;
 
   handleClick = () => {
     this.setState({ isEditing: !this.state.isEditing });
@@ -13,11 +16,11 @@ class Expense extends React.PureComponent {
   handleUpdate = expense => {
     this.handleClick();
 
-    this.props.handleUpdate(expense);
+    this.context.handleUpdate(expense);
   };
 
   render() {
-    var { expense, handleDelete } = this.props;
+    var { expense } = this.props;
 
     return (
       <tr data-id={expense.id}>
@@ -46,7 +49,11 @@ class Expense extends React.PureComponent {
               >
                 <Icon type="edit" />
               </button>
-              <button type="button" className="action" onClick={handleDelete}>
+              <button
+                type="button"
+                className="action"
+                onClick={this.context.handleDelete}
+              >
                 <Icon type="delete" />
               </button>
             </td>
