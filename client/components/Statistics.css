@@ -1,0 +1,27 @@
+.statistics-wrapper {
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.statistics-wrapper > * {
+  flex: 1;
+}
+
+.statistics-wrapper .title {
+  margin: unset;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.statistics-wrapper .value {
+  margin: unset;
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--heading-color);
+}

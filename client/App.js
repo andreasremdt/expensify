@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Table from "./components/Table";
 import Form from "./components/Form";
+import Statistics from "./components/Statistics";
 import ExpenseContext from "./contexts/ExpenseContext";
 
 class App extends React.PureComponent {
@@ -22,6 +23,8 @@ class App extends React.PureComponent {
       <React.Fragment>
         <Header handleToggleForm={this.handleToggleForm} />
 
+        <Statistics />
+
         <div className="wrapper">
           {this.state.isFormDisplayed && (
             <Form
@@ -29,6 +32,7 @@ class App extends React.PureComponent {
               onCancel={this.handleToggleForm}
             />
           )}
+
           <Table />
         </div>
       </React.Fragment>

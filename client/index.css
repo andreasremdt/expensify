@@ -4,6 +4,7 @@
   --text-color: hsl(209, 34%, 30%);
   --heading-color: hsl(209, 61%, 16%);
   --border-color: hsl(212, 33%, 89%);
+  --light-gray: hsl(210, 36%, 96%);
 }
 
 * {
@@ -17,9 +18,7 @@ body {
   color: var(--text-color);
 }
 
-h1,
-h2,
-h3 {
+h1 {
   font-weight: lighter;
   color: var(--heading-color);
   margin: unset;
@@ -35,7 +34,7 @@ td {
 }
 
 tr:nth-child(odd) {
-  background-color: hsl(210, 36%, 96%);
+  background-color: var(--light-gray);
 }
 
 svg,
@@ -44,5 +43,6 @@ img {
 }
 
 .wrapper {
-  padding: 0 calc((100vw - 1024px) / 2);
+  padding-left: calc((100vw - 1024px) / 2);
+  padding-right: calc((100vw - 1024px) / 2);
 }
