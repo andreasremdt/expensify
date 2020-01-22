@@ -10,8 +10,9 @@
   text-transform: uppercase;
   height: 40px;
   padding: 0 15px;
+  text-indent: 8px;
   cursor: pointer;
-  transition: background-color .1s linear, color .1s linear;
+  transition: background-color 0.1s linear, color 0.1s linear;
 }
 
 .button.is-primary {
@@ -35,8 +36,4 @@
 .button.is-secondary:hover,
 .button.is-secondary:focus {
   background-color: white;
-}
-
-.button > .icon {
-  margin-right: 8px;
 }

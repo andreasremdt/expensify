@@ -17,6 +17,12 @@ const DEFAULT_STATE = {
 class ExpensesForm extends React.PureComponent {
   state = DEFAULT_STATE;
 
+  componentDidMount() {
+    if (this.props.expense) {
+      this.setState(this.props.expense);
+    }
+  }
+
   handleChange = evt => {
     var { target } = evt;
 
@@ -42,7 +48,9 @@ class ExpensesForm extends React.PureComponent {
     if (Object.keys(errors).length) {
       this.setState({ errors });
     } else {
-      this.props.handleCreate(this.state);
+      var { id, name, amount, category, description } = this.state;
+
+      this.props.onSubmit({ id, name, amount, category, description });
 
       this.setState(DEFAULT_STATE);
     }
@@ -106,8 +114,19 @@ class ExpensesForm extends React.PureComponent {
           </Input>
         </div>
 
-        <Button type="submit">
-          <Icon type="check" /> Save
+        <div className="group">
+          <Button
+            type="button"
+            variant="secondary"
+            title="Cancel"
+            onClick={this.props.onCancel}
+          >
+            <Icon type="cancel" />
+          </Button>
+        </div>
+
+        <Button type="submit" title="Save expense">
+          <Icon type="check" />
         </Button>
       </form>
     );

@@ -9,12 +9,12 @@ class App extends React.PureComponent {
     expenses: [],
     isFormDisplayed: false
   };
-  
+
   componentDidMount() {
     this.setState({ expenses });
   }
 
-  handleDelete = (evt) => {
+  handleDelete = evt => {
     var { id } = evt.currentTarget.closest("tr").dataset;
 
     this.setState({
@@ -22,9 +22,21 @@ class App extends React.PureComponent {
     });
   };
 
-  handleCreate = (expense) => {
+  handleCreate = expense => {
     this.setState({
       expenses: [...this.state.expenses, expense]
+    });
+  };
+
+  handleUpdate = updated => {
+    this.setState({
+      expenses: this.state.expenses.map(expense => {
+        if (expense.id == updated.id) {
+          return updated;
+        }
+
+        return expense;
+      })
     });
   };
 
@@ -40,8 +52,17 @@ class App extends React.PureComponent {
         <Header handleToggleForm={this.handleToggleForm} />
 
         <div className="wrapper">
-          {this.state.isFormDisplayed && <Form handleToggleForm={this.handleToggleForm} handleCreate={this.handleCreate} />}
-          <Table expenses={this.state.expenses} handleDelete={this.handleDelete} />
+          {this.state.isFormDisplayed && (
+            <Form
+              onSubmit={this.handleCreate}
+              onCancel={this.handleToggleForm}
+            />
+          )}
+          <Table
+            expenses={this.state.expenses}
+            handleDelete={this.handleDelete}
+            handleUpdate={this.handleUpdate}
+          />
         </div>
       </React.Fragment>
     );
