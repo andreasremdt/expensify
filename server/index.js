@@ -1,10 +1,14 @@
-var server = require("./lib/server");
-var expenses = require("./controllers/expenses");
+var path = require("path");
+var express = require("express");
+var expenses = require("./routers/expenses");
 
-server()
-  .get("/api/expenses", expenses.index)
-  .get("/api/expenses/:id", expenses.show)
-  .post("/api/expenses", expenses.create)
-  .patch("/api/expenses/:id", expenses.update)
-  .delete("/api/expenses/:id", expenses.destroy)
-  .start();
+const ASSET_DIR = path.join(__dirname, "..", "dist");
+
+express()
+  .use(express.static(ASSET_DIR))
+  .use(express.json())
+  .use("/api", expenses)
+  .get("*", (req, res) => {
+    res.sendFile(path.join(ASSET_DIR, "index.html"));
+  })
+  .listen(process.env.PORT || 3000);

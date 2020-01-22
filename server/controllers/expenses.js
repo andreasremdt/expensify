@@ -1,53 +1,53 @@
-var db = require("../lib/database");
+var db = require("../database");
 
 module.exports = {
-  index(response) {
+  index(req, res) {
     db.expenses.find({}, function(err, results) {
       if (err) {
-        return response.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      response.send(results);
+      res.send(results);
     });
   },
 
-  show(response, request) {
-    db.expenses.findOne({ _id: request.id }, function(err, results) {
+  show(req, res) {
+    db.expenses.findOne({ _id: req.id }, function(err, results) {
       if (err) {
-        return response.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      response.send(results || []);
+      res.send(results || []);
     });
   },
 
-  create(response, request) {
-    db.expenses.insert(request.body, function(err, results) {
+  create(req, res) {
+    db.expenses.insert(req.body, function(err, results) {
       if (err) {
-        return response.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      response.send(results);
+      res.send(results);
     });
   },
 
-  update(response, request) {
-    db.expenses.update({ _id: request.id }, request.body, {}, function(err) {
+  update(req, res) {
+    db.expenses.update({ _id: req.params.id }, req.body, {}, function(err) {
       if (err) {
-        return response.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      response.send({});
+      res.send({});
     });
   },
 
-  destroy(response, request) {
-    db.expenses.remove({ _id: request.id }, {}, function(err) {
+  destroy(req, res) {
+    db.expenses.remove({ _id: req.params.id }, {}, function(err) {
       if (err) {
-        return response.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      response.send({});
+      res.send({});
     });
   }
 };

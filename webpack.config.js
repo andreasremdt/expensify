@@ -38,7 +38,6 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
     proxy: { "/api/**": { target: "http://localhost:3000", secure: false } }
   },
   devtool: "source-map"
