@@ -23,7 +23,7 @@ class Expense extends React.PureComponent {
     var { expense } = this.props;
 
     return (
-      <tr data-id={expense.id}>
+      <tr data-id={expense._id}>
         {this.state.isEditing ? (
           <td colSpan="6">
             <Form

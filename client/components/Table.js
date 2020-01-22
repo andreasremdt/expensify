@@ -10,7 +10,7 @@ function Table() {
     <table>
       <tbody>
         {expenses.map(expense => (
-          <Expense key={expense.id} expense={expense} />
+          <Expense key={expense._id} expense={expense} />
         ))}
       </tbody>
     </table>

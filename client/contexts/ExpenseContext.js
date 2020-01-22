@@ -1,5 +1,5 @@
 import React from "react";
-import expenses from "../expenses";
+import expenseService from "../services/expense-service";
 
 var ExpenseContext = React.createContext();
 
@@ -7,32 +7,40 @@ class ExpenseContextWrapper extends React.PureComponent {
   state = { expenses: [] };
 
   componentDidMount() {
-    this.setState({ expenses });
+    expenseService.getAll().then(expenses => {
+      this.setState({ expenses });
+    });
   }
 
   handleDelete = evt => {
     var { id } = evt.currentTarget.closest("tr").dataset;
 
-    this.setState({
-      expenses: this.state.expenses.filter(expense => expense.id != Number(id))
+    expenseService.remove(id).then(() => {
+      this.setState({
+        expenses: this.state.expenses.filter(expense => expense._id != id)
+      });
     });
   };
 
   handleCreate = expense => {
-    this.setState({
-      expenses: [...this.state.expenses, expense]
+    expenseService.create(expense).then(result => {
+      this.setState({
+        expenses: [...this.state.expenses, result]
+      });
     });
   };
 
   handleUpdate = updated => {
-    this.setState({
-      expenses: this.state.expenses.map(expense => {
-        if (expense.id == updated.id) {
-          return updated;
-        }
+    expenseService.update(updated).then(() => {
+      this.setState({
+        expenses: this.state.expenses.map(expense => {
+          if (expense.id == updated.id) {
+            return updated;
+          }
 
-        return expense;
-      })
+          return expense;
+        })
+      });
     });
   };
 

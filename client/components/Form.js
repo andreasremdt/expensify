@@ -48,9 +48,9 @@ class ExpensesForm extends React.PureComponent {
     if (Object.keys(errors).length) {
       this.setState({ errors });
     } else {
-      var { id, name, amount, category, description } = this.state;
+      var { _id, name, amount, category, description } = this.state;
 
-      this.props.onSubmit({ id, name, amount, category, description });
+      this.props.onSubmit({ _id, name, amount, category, description });
 
       this.setState(DEFAULT_STATE);
     }
