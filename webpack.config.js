@@ -1,19 +1,27 @@
 var path = require("path");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "app.js"
+    filename: "bundle.js"
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html"
+    }),
+    new MiniCssExtractPlugin()
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|woff2)$/,
         use: "file-loader"
       },
       {
