@@ -34,7 +34,7 @@ class ExpenseContextWrapper extends React.PureComponent {
     expenseService.update(updated).then(() => {
       this.setState({
         expenses: this.state.expenses.map(expense => {
-          if (expense.id == updated.id) {
+          if (expense._id == updated._id) {
             return updated;
           }
 

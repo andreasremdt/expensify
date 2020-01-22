@@ -17,6 +17,7 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 1px;
+  opacity: 0.6;
 }
 
 .statistics-wrapper .value {
